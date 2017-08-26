@@ -25,7 +25,7 @@ class Login extends CI_Controller {
             if ($this->check_api_key($api_key)) {
                 $this->session->set_flashdata('message', 'Succesful API Key. Welcome!');
                 $this->session->set_userdata('api_key', $api_key);
-                redirect(base_url('start'));
+                redirect(base_url('dashboard'));
             } else {
                 $this->session->set_flashdata('error', 'Incorrect API Key');
                 redirect(base_url('login'));
