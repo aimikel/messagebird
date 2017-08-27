@@ -35,6 +35,7 @@ This API key is created in the user's account in Messagebird dashboard area.
 After logging in, user's API Key is stored in `SESSION`.
 
 To delete the `SESSION` data the user must Logout by navigating to the top right area of the page.
+
 ---
 
 ### Send SMS
