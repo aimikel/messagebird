@@ -1,134 +1,62 @@
-# CodeIgniter Composer Installer
+# Messagebird Interview Assignment
+---
 
-[![Latest Stable Version](https://poser.pugx.org/kenjis/codeigniter-composer-installer/v/stable)](https://packagist.org/packages/kenjis/codeigniter-composer-installer) [![Total Downloads](https://poser.pugx.org/kenjis/codeigniter-composer-installer/downloads)](https://packagist.org/packages/kenjis/codeigniter-composer-installer) [![Latest Unstable Version](https://poser.pugx.org/kenjis/codeigniter-composer-installer/v/unstable)](https://packagist.org/packages/kenjis/codeigniter-composer-installer) [![License](https://poser.pugx.org/kenjis/codeigniter-composer-installer/license)](https://packagist.org/packages/kenjis/codeigniter-composer-installer)
+by Aimilia Kelaidi (aim.kelaidi@gmail.com)
 
-This package installs the offical [CodeIgniter](https://github.com/bcit-ci/CodeIgniter) (version `3.1.*`) with secure folder structure via Composer.
+##Getting started
 
-**Note:** If you want to install CodeIgniter4 (under development), see <https://github.com/kenjis/codeigniter-composer-installer/tree/4.x>.
+###Introduction
+This small project was implemented for the purposes of the the Interview Assignment that was given to me on 09/08/2017 by Messagebird and
+it was built in PHP using `Codeigniter v.3.1` through `composer` from https://github.com/kenjis/codeigniter-composer-installer.
 
-You can update CodeIgniter system folder to latest version with one command.
+The look-and-feel of this project is based on Messagebird's platform.
 
-## Folder Structure
+In this project a web page is created in which a user can perform the following:
+*Fill its mobile number, one or more recipient(s) number(s) and a message and send it to the Messagebird API.
+*Receive messages on a VMN number (Virtual Mobile Number).
+*View a list of the sent and received messages which updates in realtime. 
 
-```
-codeigniter/
-├── application/
-├── composer.json
-├── composer.lock
-├── public/
-│   ├── .htaccess
-│   └── index.php
-└── vendor/
-    └── codeigniter/
-        └── framework/
-            └── system/
-```
+For the assignment purposes, a Messagebird account was created in Messagebird's platform: dashboard.messagebird.com.
+A test API key was created in this account and used to test the project's functionality.
 
-## Requirements
+###Instalation and Configuration
 
-* PHP 5.3.7 or later
-* `composer` command (See [Composer Installation](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx))
-* Git
+1. Download or clone repository into your webserver. The domain should point to folder `public` where `index.php` will route into `Codeigniter`.
+2. Replace `base_url` in `applications/config/config.php` with your domain name.
 
-## How to Use
+###Login
+In order to be able to use the project's functionalities, the user must first provide with a valid API key.
+This API key is created in his/ her account in Messagebird dashboard.
+The application uses cURL to check the HTTP code status returned by Messagebird's Authentication service.
+If the returned HTTP status is 200, the user is allowed to proceed.
+Otherwise, the user is asked to fill in a valid API key.
 
-### Install CodeIgniter
 
-```
-$ composer create-project kenjis/codeigniter-composer-installer codeigniter
-```
+###Send SMS
+In order to send an SMS to one or more recipients, the user should navigate in the SMS area on the left and click on the option 'Quick Send'.
+In this case, the user is asked to provide with an originator's number or string, one or more recipients numbers seperated by enter and the message.
+When 'Send SMS' button is pressed, a notification will appear indicating a success or fail message.
 
-Above command installs `public/.htaccess` to remove `index.php` in your URL. If you don't need it, please remove it.
+###SMS Overview
+In order to get an overview of all SMSes, the user should navigate in the SMS area on the left and click on the option 'SMS Overview'.
+The application uses cURL in order to retrieve the messages as they arrive through the Messagebird's API and manipulates the returned data
+to display the messages and the pagination. 
+Moreover, the application sets to a COOKIE the ids retrieved from the messages above. 
 
-And it changes `application/config/config.php`:
+As instructed in the assignment, on window load the application uses the receiveMessages() function to retrieve the messages with a set interval.
+The COOKIE mentioned above is now used to validate which messages have already been displayed in the overview table or not.
+This functionality is performed as mentioned below:
+For each receiveMessages() call the application parses the messages' ids and compares them with the ids already stored in the COOKIE.
+For each message, if its id is not already stored in the COOKIE, the application renders it by appending a new line in the overview table 
+and pushes this message's id in the COOKIE.
+Also alters the pagination's links with the new ones. 
 
-~~~
-$config['composer_autoload'] = FALSE;
-↓
-$config['composer_autoload'] = realpath(APPPATH . '../vendor/autoload.php');
-~~~
+For the purposes of this assignment we assume that the pagination limit is 20 messages.
 
-~~~
-$config['index_page'] = 'index.php';
-↓
-$config['index_page'] = '';
-~~~
 
-#### Install Translations for System Messages
+#### How to Use 
+* The project can be used by providing with a valid API key through a Messagebird account.
+* After successfully logging in, the user is redirected to the Dashboard area.
+* From that point on, the user can navigate on the menu area to send a message to one or more recipients.
+* The user can also retriece an SMS overview based on the API key provided in the first step.
 
-If you want to install translations for system messages:
-
-```
-$ cd /path/to/codeigniter
-$ php bin/install.php translations 3.1.0
-```
-
-#### Install Third Party Libraries
-
-[Codeigniter Matches CLI](https://github.com/avenirer/codeigniter-matches-cli):
-
-```
-$ php bin/install.php matches-cli master
-```
-
-[CodeIgniter HMVC Modules](https://github.com/jenssegers/codeigniter-hmvc-modules):
-
-```
-$ php bin/install.php hmvc-modules master
-```
-
-[Modular Extensions - HMVC](https://bitbucket.org/wiredesignz/codeigniter-modular-extensions-hmvc):
-
-```
-$ php bin/install.php modular-extensions-hmvc codeigniter-3.x
-```
-
-[Ion Auth](https://github.com/benedmunds/CodeIgniter-Ion-Auth):
-
-```
-$ php bin/install.php ion-auth 2
-```
-
-[CodeIgniter3 Filename Checker](https://github.com/kenjis/codeigniter3-filename-checker):
-
-```
-$ php bin/install.php filename-checker master
-```
-
-[CodeIgniter Rest Server](https://github.com/chriskacerguis/codeigniter-restserver):
-
-```
-$ php bin/install.php restserver 2.7.2
-```
-
-### Run PHP built-in server (PHP 5.4 or later)
-
-```
-$ cd /path/to/codeigniter
-$ bin/server.sh
-```
-
-### Update CodeIgniter
-
-```
-$ cd /path/to/codeigniter
-$ composer update
-```
-
-You must update files manually if files in `application` folder or `index.php` change. Check [CodeIgniter User Guide](http://www.codeigniter.com/user_guide/installation/upgrading.html).
-
-## Reference
-
-* [Composer Installation](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx)
-* [CodeIgniter](https://github.com/bcit-ci/CodeIgniter)
-* [Translations for CodeIgniter System](https://github.com/bcit-ci/codeigniter3-translations)
-
-## Related Projects for CodeIgniter 3.x
-
-* [Cli for CodeIgniter 3.0](https://github.com/kenjis/codeigniter-cli)
-* [ci-phpunit-test](https://github.com/kenjis/ci-phpunit-test)
-* [CodeIgniter Simple and Secure Twig](https://github.com/kenjis/codeigniter-ss-twig)
-* [CodeIgniter Doctrine](https://github.com/kenjis/codeigniter-doctrine)
-* [CodeIgniter Deployer](https://github.com/kenjis/codeigniter-deployer)
-* [CodeIgniter3 Filename Checker](https://github.com/kenjis/codeigniter3-filename-checker)
-* [CodeIgniter Widget (View Partial) Sample](https://github.com/kenjis/codeigniter-widgets)
