@@ -1,79 +1,3 @@
-<script type="text/javascript">
-
-    $(document).ready(function () {
-        $("#send_message").click(function () {
-            if (!validate_fields()) {
-                return false;
-            }
-
-            var originator = $("#originator").val();
-            var body = $("#body").val();
-            var recipients = $("#recipients").val();
-
-            $.each(recipients.split(/\n/), function (i, recipient) {
-                send_message(originator, body, recipient);
-            });
-        });
-    });
-</script>
-
-<script>
-    function validate_fields() {
-        var flag = true;
-        if ($.trim($("#originator").val()) == "") {
-            flag = false;
-            $("#originator-error").text("* Originator field is required");
-        } else {
-            $("#originator-error").text("");
-        }
-
-        if ($.trim($("#recipients").val()) == "") {
-            flag = false;
-            $("#recipients-error").text("* Recipients field is required");
-        } else {
-            $("#recipients-error").text("");
-        }
-
-        if ($.trim($("#body").val()) == "") {
-            flag = false;
-            $("#body-error").text("* Body field is required");
-        } else {
-            $("#body-error").text("");
-        }
-
-        return flag;
-    }
-
-    function send_message(originator, body_msg, recipient) {
-        var mb = new MessageBird('<?= $api_key ?>');
-        // Create a message.
-        mb.createMessage(originator, body_msg, [recipient])
-                .then((message) => {
-                    //console.log(message);
-                    successful_message(message);
-                })
-                .catch((err) => {
-                    console.error(err);
-                });
-    }
-
-    function successful_message(message) {
-        var id = message['id'];
-        var originator = message['originator'];
-        var recipients = message['recipients'];
-        var items = recipients['items'];
-        var recipient = items[0]['recipient'];
-        var body = message['body'];
-        var created_date = message['createdDatetime'];
-
-        $("#notification").fadeIn("slow").append('Your message with ID: ' + id + '<br/>from: ' + originator + '<br/>to: ' + recipient + '<br/>body: ' + body + '<br/>at: ' + created_date + ' has been succesfully sent');
-        $(".dismiss").click(function () {
-            $("#notification").fadeOut("slow");
-        });
-
-    }
-</script>
-
 <section class="main clearfix">
     <div class="col-md-12">
         <h1 class="head_title">
@@ -121,3 +45,82 @@
         </div>
     </div>
 </section>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#send_message").click(function () {
+            if (!validate_fields()) {
+                return false;
+            }
+
+            var originator = $("#originator").val();
+            var body = $("#body").val();
+            var recipients = $("#recipients").val();
+            
+            //for each recipient seperated by enter, send a message
+            $.each(recipients.split(/\n/), function (i, recipient) {
+                send_message(originator, body, recipient);
+            });
+        });
+    });
+
+    function validate_fields() {
+        var flag = true;
+        if ($.trim($("#originator").val()) == "") {
+            flag = false;
+            $("#originator-error").text("* Originator field is required");
+        } else {
+            $("#originator-error").text("");
+        }
+
+        if ($.trim($("#recipients").val()) == "") {
+            flag = false;
+            $("#recipients-error").text("* Recipients field is required");
+        } else {
+            $("#recipients-error").text("");
+        }
+
+        if ($.trim($("#body").val()) == "") {
+            flag = false;
+            $("#body-error").text("* Body field is required");
+        } else {
+            $("#body-error").text("");
+        }
+
+        return flag;
+    }
+
+    function send_message(originator, body_msg, recipient) {
+        var mb = new MessageBird('<?= $api_key ?>');
+        mb.createMessage(originator, body_msg, [recipient])
+                .then((message) => {
+                    successful_message(message);
+                })
+                .catch((err) => {
+                    error_message(err);
+                });
+    }
+
+    function successful_message(message) {
+        var id = message['id'];
+        var originator = message['originator'];
+        var recipients = message['recipients'];
+        var items = recipients['items'];
+        var recipient = items[0]['recipient'];
+        var body = message['body'];
+        var created_date = message['createdDatetime'];
+
+        $("#notification").fadeIn("slow").append('Your message to: ' + recipient + ' has been succesfully sent<br/>');
+        $(".dismiss").click(function () {
+            $("#notification").fadeOut("slow");
+        });
+    }
+
+    function error_message(error) {
+        $("#notification").fadeIn("slow").append(error);
+        $(".dismiss").click(function () {
+            $("#notification").fadeOut("slow");
+        });
+    }
+</script>

@@ -9,6 +9,7 @@
         <!--bootstrap-->
         <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="<?= base_url('assets/js/js.cookie.js') ?>"></script>
         <script src="<?= base_url('assets/js/frontend-assignment.min.js'); ?>"></script>
 
         <!--style-->
@@ -25,17 +26,12 @@
                 $('.menu_title_top').click(function () {
                     $(this).find('.submenu').toggleClass('active_sub');
                 });
-
-                var window_height = $(window).height();
-
-                $(".sidebar").height(window_height);
-                $(".main-wrapper").height(window_height);
             });
         </script>
     </head>
     <body>
-        <header>
-            <div class="container-fluid special_width">
+        <div class="container-fluid special_width">
+            <header>
                 <?php
                 $message = $this->session->flashdata('message');
                 $error = $this->session->flashdata('error');
@@ -125,11 +121,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </header>
-        <!--end header-->
+            </header>
+            <!--end header-->
 
-        <div class="container-fluid special_width clearfix">
             <div class="sidebar col-md-2 clearfix">
                 <div class="col-md-12 no-padding">
                     <nav class="main_menu_left">
@@ -155,9 +149,11 @@
                                             </a>
                                         </li>
                                         <li class="submenu_item">
-                                            <div class="submenu_item_title">
-                                                <span>SMS Overview</span>
-                                            </div>
+                                            <a href="<?= base_url('message/receive') ?>">
+                                                <div class="submenu_item_title">
+                                                    <span>SMS Overview</span>
+                                                </div>
+                                            </a>
                                         </li>                                                        
                                     </ul>
                                 </div>
