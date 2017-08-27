@@ -69,7 +69,5 @@ For the purposes of this assignment we assume that the pagination limit is 20 me
 
 ### Notes
 * In order to Login to the application, the project uses `cURL` to check the HTTP code status returned by Messagebird's Authentication service.
-
-If the returned HTTP status is 200, the user is allowed to proceed.
-
-Otherwise, the user is asked to fill in a valid API key.
+* If the returned HTTP status is 200, the user is allowed to proceed.
+* Otherwise, the user is asked to fill in a valid API key.
