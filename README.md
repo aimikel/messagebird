@@ -43,14 +43,14 @@ When 'Send SMS' button is pressed, a notification will appear indicating a succe
 
 ### SMS Overview
 In order to get an overview of all SMSes, the user should navigate in the SMS area on the left and click on the option 'SMS Overview'.
-The application uses cURL in order to retrieve the messages as they arrive through the Messagebird's API and manipulates the returned data
+The application uses `cURL` in order to retrieve the messages as they arrive through the Messagebird's API and manipulates the returned data
 to display the messages and the pagination. 
-Moreover, the application sets to a COOKIE the ids retrieved from the messages above. 
+Moreover, the application sets the ids retrieved from the messages above to a COOKIE. 
 
-As instructed in the assignment, on window load the application uses the receiveMessages() function to retrieve the messages with a set interval.
+As instructed in the assignment, on window load the application uses the `receiveMessages()` function to retrieve the messages with a set interval.
 The COOKIE mentioned above is now used to validate which messages have already been displayed in the overview table or not.
 This functionality is performed as mentioned below:
-For each receiveMessages() call the application parses the messages' ids and compares them with the ids already stored in the COOKIE.
+For each `receiveMessages()` call the application parses the messages' ids and compares them with the ids already stored in the COOKIE.
 For each message, if its id is not already stored in the COOKIE, the application renders it by appending a new line in the overview table 
 and pushes this message's id in the COOKIE.
 Also alters the pagination's links with the new ones. 
@@ -68,6 +68,8 @@ For the purposes of this assignment we assume that the pagination limit is 20 me
 ---
 
 ### Notes
-* In order to Login to the application, the project uses cURL to check the HTTP code status returned by Messagebird's Authentication service.
+* In order to Login to the application, the project uses `cURL` to check the HTTP code status returned by Messagebird's Authentication service.
+
 If the returned HTTP status is 200, the user is allowed to proceed.
+
 Otherwise, the user is asked to fill in a valid API key.
