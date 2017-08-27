@@ -14,8 +14,7 @@ and a Javascript cookie library from https://github.com/js-cookie/js-cookie.
 The look-and-feel of this project is based on Messagebird's platform.
 
 In this project a web page is created in which a user can perform the following:
-* Fill its mobile number, one or more recipient(s) number(s) and a message and send it to the Messagebird API.
-* Receive messages on a VMN number (Virtual Mobile Number).
+* Fill in its mobile number, one or more recipient(s) number(s) and a message and send it to the Messagebird API.
 * View a list of the sent and received messages which updates in realtime. 
 
 For the assignment purposes, a Messagebird account was created in Messagebird's platform: dashboard.messagebird.com.
