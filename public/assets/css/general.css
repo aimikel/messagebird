@@ -1,0 +1,324 @@
+@charset "utf-8";
+
+/*GENERAL*/
+.no-padding {
+    padding: 0;
+}
+.no-padding-left {
+    padding-left: 0;
+}
+.no-padding-right {
+    padding-right: 0;
+}
+html{
+    min-height:100%; 
+}
+body {
+    font-family: "Open sans",sans-serif;
+    font-weight: normal;
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+    line-height: normal;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background-color:#353f4f;
+    color: #4a5669;
+    min-height:100%;
+}
+.row-same-height {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+.row-same-height {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+.col-xs-height {
+    display:table-cell;
+    float:none;
+}
+.col-full-height {
+    vertical-align:middle;
+    height:100%;
+}
+.img-responsive {
+    height:100%;
+    max-width:100%;
+}
+.special_width {
+    max-width:1600px;
+}
+.clear {
+    clear:both;
+}
+.main_menu_left{
+    height:100%;
+}
+/*END GENERAL*/
+/*LOGIN AREA - API KEY*/
+.head_title_main{
+    text-align:center;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 30px;
+
+    color:#A77869;
+}
+.submit_btn_key
+{
+    margin-bottom:60px;
+}
+.api_key_wrapper
+{
+    margin: 90px 30px 60px 260px;
+    background:#E5F0FA;
+    max-width:1600px;
+    min-height:500px;
+    margin: 0 auto;
+}
+.api_key_wrapper_inner
+{
+    background:#E5F0FA;
+    padding:50px;
+}
+.form_to_send_key
+{
+    margin-top:40px;
+}
+.input_item_indx
+{
+    border: 1px solid #eaf0fa;
+    border: 2px solid #ecf2fc;
+    border-radius: 2px;
+    color: #4c5669;
+    filter: none;
+    padding: 0 2px 0 10px;
+    height: 40px;
+    width:100%;
+    background:url('https://dash.cdn.messagebird.com/assets/images/icons/asterix.svg') right 15px center no-repeat;
+    margin-bottom:15px;   
+}
+/*END LOGIN AREA - API KEY*/
+/*SMS OVERVIEW*/
+.head_title {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+h2.head_title {
+    float:left;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 30px;
+    margin: 0 0 30px;
+    color:#A77869;
+}
+.submenu {
+    display: none;
+    -webkit-transition-duration: 1.3s;
+    transition:1.3s;
+}
+.submenu.active_sub {
+    display: block;
+    -webkit-transition-duration: 0.8s;
+    transition:0.8s;
+}
+.main_menu_left ul li.menu_title_top {
+    margin-top:25px;
+    margin-bottom:25px;
+    list-style-type: none;
+}
+.main_menu_left ul li.submenu_item {
+    margin-top:15px;
+    margin-bottom:15px;
+    margin-left:19px;
+    list-style-type: none;
+}
+.menu_title span:hover {
+    cursor:pointer;
+}
+ul.submenu {
+    padding-left:0;
+}
+.menu_title i {
+    color:#4a5669;
+}
+.menu_title span {
+    color:#4a5669;
+}
+.menu_title span:hover {
+    color:#3d9edf;
+}
+.menu_title_top a:hover, .menu_title a:hover, .submenu_item a:hover {
+    text-decoration:none!important;
+}
+.header_inner {
+    background:#E8F2FB;
+    padding:20px 0px;
+} 
+.header_right_side {
+    vertical-align:middle;
+    line-height:30px;
+}
+.header_right_side_left {
+    float: left;
+}
+.header_right_side_right {
+    float: right;
+    width: 500px;
+}
+.header_right_side_right_inner {
+    float: right;
+}
+.sidebar {
+    background:#E8F2FB;
+}
+.good_day_user span {
+    font-family: 'proxima_nova_scosfthin', Georgia, sans-serif;
+    font-weight:600;
+    color:#405E8B;
+    opacity: .5;
+    font-size: 14px;
+}
+.setup_guide span {
+    font-family: 'proxima_nova_scosfthin', Georgia, sans-serif;
+    font-weight:600;
+    color: #4c5669;
+    font-size: 12px;
+}
+.messagebird_setup_guide {
+    float:left;
+    line-height: 30px;
+    padding-right: 30px;
+    vertical-align: middle;
+}
+.messagebird_user_account {  
+    float:left;
+}
+.user_avatar_image {
+    float:left;
+    width:30px;
+    height:30px;
+    border-radius: 100%;
+}
+.user_account_info {
+    float:left;
+}
+.user_account_info {
+    float:right;
+    padding-left:15px;
+    line-height: 30px;
+    padding-right: 30px;
+    vertical-align: middle;
+}
+.main-wrapper {
+    background:#E8F2FB;
+}
+.input-errors  {
+    color: #a94442;
+    font-style: italic;
+    font-size: 12px;
+}
+.input_item {
+    border: 1px solid #eaf0fa;
+    border: 2px solid #ecf2fc;
+    border-radius: 2px;
+    color: #4c5669;
+    filter: none;
+    padding: 0 2px 0 10px;
+    height: 40px;
+    width:100%;
+    background-color: #fff;
+    margin-bottom:15px; 
+}
+.input_textarea {
+    height:100px;
+    border: 2px solid #ecf2fc;
+    border-radius: 2px;
+    color: #4c5669;
+    filter: none;
+    padding: 10px 10px 0 10px;
+    width:100%;
+    margin-bottom:15px; 
+    resize: vertical;
+}
+.tip_charges_per_sms {
+    float:right;
+    margin-bottom:25px; 
+}
+.form_to_send {
+    width:100%;
+}
+#notification {
+    font-weight:normal;
+    font-size:14px;
+    color:#4a5669;
+    background-color:#dff0d8;
+    padding: 10px 5px;
+    margin: 10px;
+}
+#notification span.dismiss {
+    border:2px solid #FFF;
+    padding:0 5px;
+    cursor:pointer;
+    float:right;
+    margin-right:10px;
+}
+#notification a {
+    color:white;
+    text-decoration:none;
+    font-weight:bold
+}
+.btn .fa {
+    font-size: 20px;
+    padding-right: 5px;
+}
+.fa {
+    display: inline-block;
+    font-family: FontAwesome;
+    font-feature-settings: normal;
+    font-kerning: auto;
+    font-language-override: normal;
+    font-size: inherit;
+    font-size-adjust: none;
+    font-stretch: normal;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    line-height: 1;
+    text-rendering: auto;
+}
+/*END SMS OVERVIEW*/
+/*DASHBOARD*/
+.dashboard_messages {
+    font-size: 12px;
+}
+.dashboard_messages .each_message {
+    cursor: pointer;
+}
+.dashboard_messages .each_message:hover {
+    background-color: #4a5669;
+    color: #fff;
+}
+.dashboard_recipients ul {
+    padding-left: 15px;
+}
+.main.dashboard {
+    height:100%;
+}
+.pagination {
+    display: inline-block;
+}
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+.pagination a:hover {
+    background-color: #4a5669;
+    color: #fff;
+}
+/*END DASHBOARD*/
