@@ -18,6 +18,7 @@ In this project a web page is created in which a user can perform the following:
 * View a list of the sent and received messages which updates in realtime. 
 
 For the assignment purposes, a Messagebird account was created in Messagebird's platform: dashboard.messagebird.com.
+
 A test API key was created in this account and used to test the project's functionality.
 
 ### Instalation and Configuration
