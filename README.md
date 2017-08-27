@@ -6,7 +6,7 @@ by Aimilia Kelaidi (aim.kelaidi@gmail.com)
 ## Getting started
 
 ### Introduction
-This small project was implemented for the purposes of the the Interview Assignment that was given to me on 09/08/2017 by Messagebird and
+This small project was implemented for the purposes of the Junior Frontent Engineer Interview Assignment that was given to me on 09/08/2017 by Messagebird and
 it was built in PHP using `Codeigniter v.3.1` through `composer` from https://github.com/kenjis/codeigniter-composer-installer using JQuery CDN, Bootstrap CDN
 and a Javascript cookie library from https://github.com/js-cookie/js-cookie.
 
