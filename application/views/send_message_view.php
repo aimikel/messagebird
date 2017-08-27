@@ -10,32 +10,29 @@
                 <span class="dismiss"><a title="Dismiss this notification">X</a></span>
             </div>
         </div>
+        <!--form which takes originator's number, recipients number(s) and the text message-->
         <div class="form_to_send">
             <div class="form_to_send_inner">
                 <div class="row">
                     <div class="col-md-6">
                         <span class="input-errors" id="originator-error"></span>
-                        <input id="originator" type="text" class="input_item origin_name" value="306976678923" placeholder="Originator"/>
+                        <input id="originator" type="text" class="input_item origin_name" placeholder="Originator - type in your number"/>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <span class="input-errors" id="recipients-error"></span>
-                        <textarea id="recipients" class="input_textarea rec_num" placeholder="Recipients - press enter to add more recipients">306976678923</textarea>
+                        <textarea id="recipients" class="input_textarea rec_num" placeholder="Recipients - press enter to add more recipients"></textarea>
                     </div>
                     <div class="col-md-6">
                         <span class="input-errors" id="body-error"></span>
-                        <textarea id="body" class="input_textarea message_body" placeholder="testing msg">test body</textarea>
-                        <div class="tip_charges_per_sms">
-                            <span>
-                                0/1377, 0 SMS
-                            </span>
-                        </div>
+                        <textarea id="body" class="input_textarea message_body" placeholder="Type your message here"></textarea>
+                      
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4 pull-right">
-                        <button type="submit" class="submit_btn btn-block btn-primary btn" value="SEND" id="send_message" onclick="validate_fields()">
+                        <button type="submit" class="submit_btn btn-block btn-primary btn" value="SEND" id="send_message">
                             <i class="fa fa-comment"></i>
                             Send SMS
                         </button>
@@ -54,17 +51,20 @@
                 return false;
             }
 
-            var originator = $("#originator").val();
-            var body = $("#body").val();
+            var originator = $("#originator").val();           
             var recipients = $("#recipients").val();
-            
-            //for each recipient seperated by enter, send a message
+            var body = $("#body").val();
+             
+            //for each recipient seperated by enter, sends a message
             $.each(recipients.split(/\n/), function (i, recipient) {
                 send_message(originator, body, recipient);
             });
         });
+        
     });
-
+    
+    /*forms the notification error messages if one or all the
+   required fields are empty*/
     function validate_fields() {
         var flag = true;
         if ($.trim($("#originator").val()) == "") {
@@ -90,7 +90,9 @@
 
         return flag;
     }
-
+    
+    /*sends the message using the originator, recipient and text body values 
+    given by the user*/
     function send_message(originator, body_msg, recipient) {
         var mb = new MessageBird('<?= $api_key ?>');
         mb.createMessage(originator, body_msg, [recipient])
@@ -100,23 +102,27 @@
                 .catch((err) => {
                     error_message(err);
                 });
+                
+                $("#notification").html("");
     }
-
+    /*
+     * when message is sent shows an informative message
+     * about the message and its recipient(s)
+     */
     function successful_message(message) {
-        var id = message['id'];
-        var originator = message['originator'];
+       
         var recipients = message['recipients'];
         var items = recipients['items'];
-        var recipient = items[0]['recipient'];
-        var body = message['body'];
-        var created_date = message['createdDatetime'];
-
+        var recipient = items[0]['recipient'];     
+       
         $("#notification").fadeIn("slow").append('Your message to: ' + recipient + ' has been succesfully sent<br/>');
         $(".dismiss").click(function () {
             $("#notification").fadeOut("slow");
         });
     }
-
+    /*
+     * if an error is produced shows an informative message
+     */
     function error_message(error) {
         $("#notification").fadeIn("slow").append(error);
         $(".dismiss").click(function () {

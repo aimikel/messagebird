@@ -1,3 +1,4 @@
+<!--dashboard section-->
 <section class="main dashboard">
     <div class="main_inner">
         <div class="row-same-height row-full-height">
@@ -18,3 +19,4 @@
         </div>
     </div>
 </section>
+<!--end dashboard section-->

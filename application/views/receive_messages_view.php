@@ -1,3 +1,4 @@
+<!--section for viewing messages-->
 <section class="main">
     <div class="main_inner">
         <div class="row-same-height row-full-height">
@@ -5,13 +6,14 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h1 class="head_title">
-                            Receive Messages
+                            Messages Overview
                         </h1>
                     </div>    
                 </div>
                 <?php if ($messages['messages'] && !empty($messages['messages'])) { ?>
                     <div class="row">
                         <div class="col-md-12">
+                            <!--table showing an overview of all the messages-->
                             <table class="table table-striped dashboard_messages" id="dashboard_messages">
                                 <thead>
                                     <tr>
@@ -41,6 +43,7 @@
                                 </tbody>
                             </table>
                         </div>
+                        <!--section with pagination-->
                         <div class="pagination">
                             <?php if ($messages['links']['first_offset'] != "") { ?>
                                 <a id="first_offset" href="<?= base_url('message/receive/' . $messages['links']['first_offset']) ?>">First</a>
@@ -66,6 +69,7 @@
                                 <a id="last_offset" href="#">Last</a>
                             <?php } ?>
                         </div>
+                         <!--end section with pagination-->
                     </div>
                 <?php } ?>
             </div>
@@ -73,7 +77,7 @@
     </div>
 </section>
 
-<!-- Modal -->
+<!-- Modal window for each message when clicked-->
 <div class="modal fade" id="message_info" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -123,6 +127,7 @@
 
 <script type="text/javascript">
     $(window).load(function () {
+        /*when a message is clicked show modal window with message details*/
         $('#dashboard_messages').on('click', '.each_message', function () {
             clear_modal();
 
@@ -150,7 +155,7 @@
 
         receive_messages();
     });
-
+    /*flash modal window data*/
     function clear_modal() {
         $("#message_info #modal_id").html("");
         $("#message_info #modal_originator").html("");
@@ -158,7 +163,7 @@
         $("#message_info #modal_body").html("");
         $("#message_info #recipients_body").html("");
     }
-
+    /*receives messages*/
     function receive_messages() {
         var mb = new MessageBird('<?= $api_key ?>');
 
@@ -166,7 +171,9 @@
             if (err) {
                 return console.error(err);
             }
-
+            /*take id from from received messages items
+            and keep them only if their ids are not already
+            in the cookies id table*/
             var mgs = res['items'];
             $.each(mgs, function (i, data) {
                 if (check_message_id_cookie(mgs[i].id) == 0) {
@@ -177,7 +184,7 @@
 
         });
     }
-
+    /*present messages*/
     function append_message(message) {
         var id = message.id;
         var originator = message.originator;
@@ -208,7 +215,10 @@
         var string = "<tr class='each_message' id=" + id + "><td>" + originator + "</td><td>" + direction + "</td><td>" + recipient_string + "</td><td>" + body + "</td><td>" + created_date + "</td></tr>";
         $(string).prependTo("#dashboard_messages tbody");
     }
-
+    
+    /*take offsets for previous, next, last and first
+     to create pagination links
+    */
     function append_pagination(res) {
         var f_offset = res.links['first'];
         if (f_offset != null) {
@@ -239,7 +249,10 @@
         }
 
     }
-
+        /*take message id and check
+         if there is already in the cookies id table do nothin
+         else store it in the cookies table
+        */
     function check_message_id_cookie(message_id) {
         var messages_ids_cookies = JSON.parse(Cookies.get('messages_ids'));
         var found = false;

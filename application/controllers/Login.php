@@ -58,7 +58,8 @@ class Login extends CI_Controller {
     }
 
     /**
-     * Unset api_key variable from session and redirect to login
+     * Logout functionality
+     * Unset api_key variable from session and redirect to login form
      */
     public function logout() {
         $this->session->unset_userdata('api_key');

@@ -18,7 +18,11 @@ class Dashboard extends MY_Controller {
         $this->view_data['balance_info'] = $balance_info;
         $this->load->template('dashboard_view', $this->view_data);
     }
-
+    /**
+     * takes given api key
+     * returns balance and currency
+     * @return $output from cURL 
+     */
     public function get_balance() {
         $url = "https://rest.messagebird.com/balance/";
         $ch = curl_init($url);

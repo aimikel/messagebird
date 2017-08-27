@@ -12,15 +12,13 @@
         <script src="<?= base_url('assets/js/js.cookie.js') ?>"></script>
         <script src="<?= base_url('assets/js/frontend-assignment.min.js'); ?>"></script>
 
-        <!--style-->
+        <!--styles-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic&subset=greek,latin' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
         <link rel="stylesheet" href="<?= base_url('assets/css/general.css') ?>"/>
 
-        <!--scripit-->
-
-
+        <!--script-->
         <script type="text/javascript">
             $(window).load(function () {
                 $('.menu_title_top').click(function () {
@@ -39,6 +37,7 @@
 
                 if (!empty($message)) {
                     ?>
+                <!--error message if there is any-->
                     <section id="main-content">
                         <section class="wrapper">
                             <div class="">
@@ -51,8 +50,10 @@
                             </div>
                         </section>
                     </section>
+                <!--end error message if there is any-->
                 <?php } ?>
                 <?php if (!empty($error)) { ?>
+                <!--error message if there is any-->
                     <section id="main-content">
                         <section class="wrapper">
                             <div class="">
@@ -65,8 +66,10 @@
                             </div>
                         </section>
                     </section>
+                <!--end error message if there is any-->
                 <?php } ?>
                 <?php if (!empty($validation_errors)) { ?>
+                <!--validation error message if there is any-->
                     <section id="main-content">
                         <section class="wrapper">
                             <div class="row">
@@ -78,8 +81,9 @@
                             </div>
                         </section>
                     </section>
+                <!--end validation error message if there is any-->
                 <?php } ?>
-
+                
                 <div class="header_inner">
                     <div class="row">
                         <div class="row-same-height row-full-height">
@@ -123,7 +127,7 @@
                 </div>
             </header>
             <!--end header-->
-
+            <!--sidebar menu-->
             <div class="sidebar col-md-2 clearfix">
                 <div class="col-md-12 no-padding">
                     <nav class="main_menu_left">
@@ -163,5 +167,7 @@
                     </nav>
                 </div>
             </div>
+            <!--end sidebar menu-->
+            <!--main area for viewing other elements-->
             <div class="col-md-10 no-padding main-wrapper">
 

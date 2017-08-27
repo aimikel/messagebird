@@ -10,10 +10,18 @@ class Message extends MY_Controller {
         parent::__construct();
     }
 
+    /**
+     * loads send_message_view
+     */
     public function send() {
-        $this->load->template('send_message', $this->view_data);
+        $this->load->template('send_message_view', $this->view_data);
     }
-
+    
+    /**
+     * returns all messages
+     * stores all of their ids in cookies
+     * loads receive_messages_view
+    */
     public function receive() {
         $offset = $this->uri->segment(3);
         $view_messages = $this->get_messages($offset);
@@ -29,16 +37,24 @@ class Message extends MY_Controller {
 
         $this->load->template('receive_messages_view', $this->view_data);
     }
-
+ 
     public function ajax_get_message() {
         $id = $this->input->post('id');
     }
-
+   /**
+     * takes id of message to show
+     * modal window with message information
+     * and details 
+     */
     public function retrieve_message() {
         $id = $this->input->post('id');
         echo json_encode($this->get_message($id));
     }
-
+    /**
+     * take all the ids from messages and stores them in an array
+     * @param type $messages
+     * @return array
+     */
     private function parse_messages_ids($messages) {
         $messages_ids = array();
 
@@ -49,8 +65,8 @@ class Message extends MY_Controller {
     }
 
     /**
-     * Return message through CURL or empty if there are no messages
-     * 
+     * Return messages through cURL or empty if there are no messages
+     * Uses given api key to return all messages
      * @param type $api_key
      * @return boolean|array
      */
@@ -73,6 +89,11 @@ class Message extends MY_Controller {
         return $this->parse_message($message);
     }
 
+    /**
+     * parses and stores specific fields of JSON message
+     * @param type $message
+     * @return $message_array
+     */
     public function parse_message($message) {
         $message_array['recipients'] = array();
         $temp_recipients = array();
@@ -93,8 +114,8 @@ class Message extends MY_Controller {
     }
 
     /**
-     * Return messages through CURL or empty if there are no messages
-     * 
+     * Return messages through CURL or empty if there are no messages     
+     * if there is an offset returned in JSON then it is also used 
      * @param type $api_key
      * @return boolean|array
      */
@@ -125,8 +146,8 @@ class Message extends MY_Controller {
     }
 
     /**
-     * Parse the json object to retrieve specific details
-     * 
+     * Parse the json object to retrieve specific fields
+     * make use of offset when there is one
      * @param type $messages
      * @return array
      */
