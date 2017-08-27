@@ -7,7 +7,9 @@ by Aimilia Kelaidi (aim.kelaidi@gmail.com)
 
 ### Introduction
 This small project was implemented for the purposes of the the Interview Assignment that was given to me on 09/08/2017 by Messagebird and
-it was built in PHP using `Codeigniter v.3.1` through `composer` from https://github.com/kenjis/codeigniter-composer-installer.
+it was built in PHP using `Codeigniter v.3.1` through `composer` from https://github.com/kenjis/codeigniter-composer-installer using JQuery CDN, Bootstrap CDN
+and a Javascript cookie library from https://github.com/js-cookie/js-cookie.
+
 
 The look-and-feel of this project is based on Messagebird's platform.
 
@@ -19,7 +21,7 @@ In this project a web page is created in which a user can perform the following:
 For the assignment purposes, a Messagebird account was created in Messagebird's platform: dashboard.messagebird.com.
 A test API key was created in this account and used to test the project's functionality.
 
-###Instalation and Configuration
+### Instalation and Configuration
 
 1. Download or clone repository into your webserver. The domain should point to folder `public` where `index.php` will route into `Codeigniter`.
 2. Replace `base_url` in `applications/config/config.php` with your domain name.
