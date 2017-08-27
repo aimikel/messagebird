@@ -32,6 +32,9 @@ A test API key was created in this account and used to test the project's functi
 In order to be able to use the project's functionalities, the user must first provide with a valid API key.
 This API key is created in the user's account in Messagebird dashboard area.
 
+After logging in, user's API Key is stored in `SESSION`.
+
+To delete the `SESSION` data the user must Logout by navigating to the top right area of the page.
 ---
 
 ### Send SMS
@@ -71,3 +74,5 @@ For the purposes of this assignment we assume that the pagination limit is 20 me
 * In order to Login to the application, the project uses `cURL` to check the HTTP code status returned by Messagebird's Authentication service. 
 If the returned HTTP status is 200, the user is allowed to proceed.
 Otherwise, the user is asked to fill in a valid API key.
+* The user can specify more than one recipients in the SMS Send section, by adding recipients separated by `Enter`.
+* The COOKIE library is used to manipulate and filter the rendering in the SMS Overview section.
