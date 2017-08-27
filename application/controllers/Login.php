@@ -19,6 +19,7 @@ class Login extends CI_Controller {
         $this->form_validation->set_rules('api_key', 'API Key', 'required|trim');
 
         if ($this->form_validation->run() == FALSE) {
+            
             $this->load->view('login_view');
         } else {
             $api_key = $this->input->post('api_key');

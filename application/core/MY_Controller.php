@@ -20,9 +20,11 @@ class MY_Controller extends CI_Controller {
      * If NOT redirect to login
      */
     private function valid_api_key() {
+        
         $this->api_key = $this->session->userdata('api_key');
         if (!$this->api_key || $this->api_key == "")
             redirect('login');
+        
     }
     
     

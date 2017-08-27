@@ -38,9 +38,6 @@ class Message extends MY_Controller {
         $this->load->template('receive_messages_view', $this->view_data);
     }
  
-    public function ajax_get_message() {
-        $id = $this->input->post('id');
-    }
    /**
      * takes id of message to show
      * modal window with message information
