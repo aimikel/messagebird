@@ -30,10 +30,7 @@ A test API key was created in this account and used to test the project's functi
 
 ### Login
 In order to be able to use the project's functionalities, the user must first provide with a valid API key.
-This API key is created in his/ her account in Messagebird dashboard.
-The application uses cURL to check the HTTP code status returned by Messagebird's Authentication service.
-If the returned HTTP status is 200, the user is allowed to proceed.
-Otherwise, the user is asked to fill in a valid API key.
+This API key is created in the user's account in Messagebird dashboard area.
 
 ---
 
@@ -68,3 +65,9 @@ For the purposes of this assignment we assume that the pagination limit is 20 me
 * From that point on, the user can navigate on the menu area to send a message to one or more recipients.
 * The user can also retriece an SMS overview based on the API key provided in the first step.
 
+---
+
+### Notes
+* In order to Login to the application, the project uses cURL to check the HTTP code status returned by Messagebird's Authentication service.
+If the returned HTTP status is 200, the user is allowed to proceed.
+Otherwise, the user is asked to fill in a valid API key.
