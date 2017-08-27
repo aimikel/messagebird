@@ -7,22 +7,29 @@
         <title>Front end-assignment</title>
 
         <!--bootstrap-->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-        <!--style-->
-        <link rel="stylesheet" href="<?= base_url() . 'assets/css/general.css' ?>"/>
-        <link rel="stylesheet" type="text/css" href="localhost/mb/public/assets/css/fonts/fonts.css" />
-
         <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="<?= base_url('assets/js/frontend-assignment.min.js'); ?>"></script>
 
+        <!--style-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic&subset=greek,latin' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+        <link rel="stylesheet" href="<?= base_url('assets/css/general.css') ?>"/>
+
+        <!--scripit-->
+
+
         <script type="text/javascript">
-            $(document).ready(function () {
+            $(window).load(function () {
                 $('.menu_title_top').click(function () {
                     $(this).find('.submenu').toggleClass('active_sub');
                 });
+
+                var window_height = $(window).height();
+
+                $(".sidebar").height(window_height);
+                $(".main-wrapper").height(window_height);
             });
         </script>
     </head>
@@ -123,7 +130,7 @@
         <!--end header-->
 
         <div class="container-fluid special_width clearfix">
-            <aside class="sidebar col-md-2 clearfix">
+            <div class="sidebar col-md-2 clearfix">
                 <div class="col-md-12 no-padding">
                     <nav class="main_menu_left">
                         <ul>
@@ -159,6 +166,6 @@
                         </ul>
                     </nav>
                 </div>
-            </aside>
-            <div class="col-md-10 no-padding">
+            </div>
+            <div class="col-md-10 no-padding main-wrapper">
 
