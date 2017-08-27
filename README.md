@@ -35,7 +35,7 @@ This API key is created in the user's account in Messagebird dashboard area.
 ---
 
 ### Send SMS
-In order to send an SMS to one or more recipients, the user should navigate in the SMS area on the left and click on the option 'Quick Send'.
+To send an SMS to one or more recipients, the user should navigate in the SMS area on the left and click on the option 'Quick Send'.
 In this case, the user is asked to provide with an originator's number or string, one or more recipients numbers seperated by enter and the message.
 When 'Send SMS' button is pressed, a notification will appear indicating a success or fail message.
 
